@@ -1,0 +1,23 @@
+/* Basic styling */
+#game-board {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr); /* 6 rows for guesses */
+  grid-template-columns: repeat(5, 1fr); /* 5 columns for letters */
+  row-gap: 7px; /* Adjust spacing between rows */
+  column-gap: 10px; /* Adjust spacing between columns */
+  width: 350px; /* Adjust as needed */
+  margin: 10px auto;
+}
+
+/* Style for individual letter cells */
+.cell {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Make cells square */
+  border: 2px solid #d3d6da; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}

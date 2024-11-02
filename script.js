@@ -186,14 +186,17 @@ document.addEventListener("keyup", (e) => {
 });
 
 document.getElementById("keyboard-cont").addEventListener("click", (e) => {
-  const target = e.target;
+  const target = e.target.closest(".keyboard-button");
 
-  if (!target.classList.contains("keyboard-button")) {
+  if (!target) {
     return;
   }
-  let key = target.textContent;
 
-  if (key === "Del") {
+  let key = target.textContent.trim();
+
+  if (key === "keyboard_return") {
+    key = "Enter";
+  } else if (key === "backspace") {
     key = "Backspace";
   }
 

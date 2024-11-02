@@ -1,9 +1,13 @@
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
 body {
   display: flex;
   flex-direction: column;
-  margin: 0;
-  min-height: 100vh;
   font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -53,15 +57,17 @@ h1 {
 }
  
 #keyboard-cont {
-  margin-top: auto;
-  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: auto;
+  padding: 0;
+  width: 100%;
 }
  
 #keyboard-cont div {
   display: flex;
+  flex-wrap: wrap;
 }
  
 .second-row {
@@ -69,13 +75,29 @@ h1 {
 }
  
 .keyboard-button {
-  margin: 0 4px;
+  flex: 1;
+  margin: 0.2rem;
+  padding: 0.8rem;
   border: 0;
   border-radius: 4px;
-  padding: 1rem;
-  font-size: 1rem;
+  max-width: 10%;
+  font-size: calc(1rem + 0.5vw);
   font-weight: 700;
   cursor: pointer;
   text-transform: uppercase;
   user-select: none;
+}
+
+.material-symbols-outlined {
+  margin: 0.4rem -0.4rem;
+}
+
+@media (max-width: 768px) {
+  html, body {
+    zoom: 0.9;
+  }
+  .keyboard-button {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
 }

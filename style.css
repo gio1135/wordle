@@ -27,7 +27,7 @@ h1 {
 
 .letter-row {
   display: flex;
-  flex-basis: auto;
+  justify-content: center;
   width: 100%;
 }
 

@@ -1,10 +1,13 @@
-import { WORDS } from "./filtered_words.js";
+import { ANSWERS } from "./answers.js";
+import { GUESSES } from "./guesses.js";
 
 const NUMBER_OF_GUESSES = 6;
 let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
 let nextLetter = 0;
-let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
+
+// Use ANSWERS array to select the right answer
+let rightGuessString = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
 
 console.log(rightGuessString);
 
@@ -67,7 +70,8 @@ function checkGuess() {
     return;
   }
 
-  if (!WORDS.includes(guessString)) {
+  // Validate the guess using GUESSES array
+  if (!GUESSES.includes(guessString)) {
     toastr.error("Word not in list");
     return;
   }
@@ -83,11 +87,9 @@ function checkGuess() {
   }
 
   //check yellow
-  //checking guess letters
   for (let i = 0; i < 5; i++) {
     if (letterColor[i] == "#6aaa64") continue;
 
-    //checking right letters
     for (let j = 0; j < 5; j++) {
       if (rightGuess[j] == currentGuess[i]) {
         letterColor[i] = "#c9b458";
@@ -100,9 +102,7 @@ function checkGuess() {
     let box = row.children[i];
     let delay = 250 * i;
     setTimeout(() => {
-      //flip box
       animateCSS(box, "flipInX");
-      //shade box
       box.style.backgroundColor = letterColor[i];
       box.style.borderColor = letterColor[i];
       box.style.color = "#ffffff";
@@ -142,16 +142,13 @@ function insertLetter(pressedKey) {
 }
 
 const animateCSS = (element, animation, prefix = "animate__") =>
-  // We create a Promise and return it
   new Promise((resolve, reject) => {
     const animationName = `${prefix}${animation}`;
-    // const node = document.querySelector(element);
     const node = element;
     node.style.setProperty("--animate-duration", "0.3s");
 
     node.classList.add(`${prefix}animated`, animationName);
 
-    // When the animation ends, we clean the classes and resolve the Promise
     function handleAnimationEnd(event) {
       event.stopPropagation();
       node.classList.remove(`${prefix}animated`, animationName);
